@@ -1,7 +1,5 @@
-import recipes from '../data/recipes.json';
-
 const initialState = {
-  recipes,
+  recipes: [],
   isRecipeSelected: false,
   recipeSelected: null,
   title: '',
@@ -49,6 +47,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ...action.newRecipe,
+      };
+
+    case 'DELETE_RECIPE':
+      return {
+        ...state,
+        isRecipeSelected: false,
+        recipeSelected: null,
       };
 
     default:

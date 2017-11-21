@@ -23,10 +23,8 @@ const RecipeItem = props => (
 
 RecipeItem.propTypes = {
   recipe: PropTypes.shape({
-    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    notes: PropTypes.string,
   }).isRequired,
   selectRecipe: PropTypes.func.isRequired,
 };

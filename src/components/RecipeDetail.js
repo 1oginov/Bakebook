@@ -12,6 +12,7 @@ const theme = getTheme();
 const RecipeDetail = props => (
   <ScrollView>
     <Icon name="close" size={48} onPress={() => props.selectNone()} />
+    <Icon name="delete" size={48} onPress={() => props.deleteRecipe(props.recipe.uid)} />
     <View style={theme.cardStyle}>
       <Image
         source={{ uri: 'http://www.getmdl.io/assets/demos/welcome_card.jpg' }}
@@ -26,12 +27,13 @@ const RecipeDetail = props => (
 
 RecipeDetail.propTypes = {
   recipe: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    uid: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     notes: PropTypes.string,
   }).isRequired,
   selectNone: PropTypes.func.isRequired,
+  deleteRecipe: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -32,3 +32,13 @@ export const loadInitialRecipes = () => {
       dispatch({ type: 'INITIAL_FETCH', payload: snapshot.val() });
     });
 };
+
+export const deleteRecipe = (uid) => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => firebase.database().ref(`/users/${currentUser.uid}/recipes/${uid}`)
+    .remove()
+    .then(() => {
+      dispatch({ type: 'DELETE_RECIPE' });
+    });
+};
