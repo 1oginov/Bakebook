@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ListView, View } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import RecipeDetail from './RecipeDetail';
 import RecipeItem from './RecipeItem';
@@ -15,6 +16,11 @@ const styles = {
 };
 
 class RecipeList extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Recipes',
+    tabBarIcon: ({ tintColor }) => <Icon name="cards" size={24} style={{ color: tintColor }} />,
+  };
+
   renderInitialView() {
     const ds = new ListView.DataSource({
       rowHasChanged: ((r1, r2) => r1 !== r2),

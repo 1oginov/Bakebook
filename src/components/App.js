@@ -6,13 +6,17 @@ import firebase from 'firebase';
 
 import Loader from './Loader';
 import Login from './Login';
-import RecipeList from './RecipeList';
+import Navigation from './Navigation';
 import store from '../store';
 
 const theme = getTheme();
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  splash: {
     alignItems: 'center',
     backgroundColor: theme.primaryColor,
     flex: 1,
@@ -50,11 +54,11 @@ export default class App extends Component {
   renderInitialView() {
     switch (this.state.isAuthenticated) {
       case true:
-        return <RecipeList />;
+        return <Navigation />;
 
       case false:
         return (
-          <View>
+          <View style={styles.splash}>
             <Text style={styles.headline}>Bakebook</Text>
             <Login />
           </View>
@@ -62,7 +66,7 @@ export default class App extends Component {
 
       default:
         return (
-          <View>
+          <View style={styles.splash}>
             <Text style={styles.headline}>Bakebook</Text>
             <Loader />
           </View>
