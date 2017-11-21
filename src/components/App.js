@@ -6,6 +6,7 @@ import firebase from 'firebase';
 
 import Loader from './Loader';
 import Login from './Login';
+import RecipeList from './RecipeList';
 import store from '../store';
 
 const theme = getTheme();
@@ -49,13 +50,23 @@ export default class App extends Component {
   renderInitialView() {
     switch (this.state.isAuthenticated) {
       case true:
-        return <Text>Authenticated</Text>;
+        return <RecipeList />;
 
       case false:
-        return <Login />;
+        return (
+          <View>
+            <Text style={styles.headline}>Bakebook</Text>
+            <Login />
+          </View>
+        );
 
       default:
-        return <Loader />;
+        return (
+          <View>
+            <Text style={styles.headline}>Bakebook</Text>
+            <Loader />
+          </View>
+        );
     }
   }
 
@@ -63,7 +74,6 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <Text style={styles.headline}>Bakebook</Text>
           {this.renderInitialView()}
         </View>
       </Provider>
