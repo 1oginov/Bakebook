@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import { getTheme } from 'react-native-material-kit';
 import firebase from 'firebase';
 
 import Loader from './Loader';
 import Login from './Login';
+import store from '../store';
 
 const theme = getTheme();
 
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -59,12 +61,12 @@ class App extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.headline}>Bakebook</Text>
-        {this.renderInitialView()}
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Text style={styles.headline}>Bakebook</Text>
+          {this.renderInitialView()}
+        </View>
+      </Provider>
     );
   }
 }
-
-export default App;
