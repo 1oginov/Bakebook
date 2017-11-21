@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ListView, Text, View } from 'react-native';
 
+import RecipeItem from './RecipeItem';
+
 const styles = {
   container: {
+    alignSelf: 'stretch',
     backgroundColor: 'white',
+    flexGrow: 1,
   },
 };
 
@@ -25,7 +29,7 @@ class RecipeList extends Component {
       <ListView
         enableEmptySections
         dataSource={this.dataSource}
-        renderRow={rowData => <Text>{JSON.stringify(rowData)}</Text>}
+        renderRow={rowData => <RecipeItem recipe={rowData} />}
       />
     );
   }
