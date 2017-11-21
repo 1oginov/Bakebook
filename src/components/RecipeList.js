@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ListView, Text, View } from 'react-native';
+import { ListView, View } from 'react-native';
 
+import RecipeDetail from './RecipeDetail';
 import RecipeItem from './RecipeItem';
 
 const styles = {
@@ -22,7 +23,7 @@ class RecipeList extends Component {
     this.dataSource = ds.cloneWithRows(this.props.recipes);
 
     if (this.props.isRecipeSelected) {
-      return <Text>Some recipe is selected</Text>;
+      return <RecipeDetail />;
     }
 
     return (

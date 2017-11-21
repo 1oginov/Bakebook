@@ -1,6 +1,6 @@
-export const selectRecipe = id => ({
+export const selectRecipe = recipe => ({
   type: 'RECIPE_SELECTED',
-  payload: id,
+  payload: recipe,
 });
 
 export const selectNone = () => ({
