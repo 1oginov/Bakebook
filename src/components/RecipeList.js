@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ListView, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import _ from 'lodash';
 
 import RecipeDetail from './RecipeDetail';
 import RecipeItem from './RecipeItem';
+import { loadInitialRecipes } from '../actions';
 
 const styles = {
   container: {
@@ -20,6 +22,10 @@ class RecipeList extends Component {
     tabBarLabel: 'Recipes',
     tabBarIcon: ({ tintColor }) => <Icon name="cards" size={24} style={{ color: tintColor }} />,
   };
+
+  componentWillMount() {
+    this.props.loadInitialRecipes();
+  }
 
   renderInitialView() {
     const ds = new ListView.DataSource({
@@ -53,11 +59,12 @@ class RecipeList extends Component {
 RecipeList.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
   isRecipeSelected: PropTypes.bool.isRequired,
+  loadInitialRecipes: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  recipes: state.RecipesReducer.recipes,
+  recipes: _.map(state.RecipesReducer.recipes, (val, uid) => ({ ...val, uid })),
   isRecipeSelected: state.RecipesReducer.isRecipeSelected,
 });
 
-export default connect(mapStateToProps)(RecipeList);
+export default connect(mapStateToProps, { loadInitialRecipes })(RecipeList);
