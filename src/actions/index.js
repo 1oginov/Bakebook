@@ -42,3 +42,22 @@ export const deleteRecipe = (uid) => {
       dispatch({ type: 'DELETE_RECIPE' });
     });
 };
+
+export const updateRecipe = recipe => ({
+  type: 'UPDATE_RECIPE',
+  payload: recipe,
+});
+
+export const saveRecipe = ({
+  uid, title, category, notes,
+}) => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => firebase.database().ref(`/users/${currentUser.uid}/recipes/${uid}`)
+    .set({
+      uid, title, category, notes,
+    })
+    .then(() => {
+      dispatch({ type: 'SAVE_RECIPE' });
+    });
+};

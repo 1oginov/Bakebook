@@ -1,7 +1,9 @@
 const initialState = {
   recipes: [],
   isRecipeSelected: false,
+  isUpdating: false,
   recipeSelected: null,
+  uid: '',
   title: '',
   category: '',
   notes: '',
@@ -49,6 +51,27 @@ export default (state = initialState, action) => {
         ...action.newRecipe,
       };
 
+    case 'UPDATE_RECIPE':
+      return {
+        ...state,
+        isUpdating: true,
+        uid: action.payload.uid,
+        title: action.payload.title,
+        category: action.payload.category,
+        notes: action.payload.notes,
+      };
+
+    case 'SAVE_RECIPE':
+      return {
+        ...state,
+        isRecipeSelected: false,
+        isUpdating: false,
+        uid: '',
+        title: '',
+        category: '',
+        notes: '',
+      };
+
     case 'DELETE_RECIPE':
       return {
         ...state,
@@ -57,8 +80,6 @@ export default (state = initialState, action) => {
       };
 
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };
