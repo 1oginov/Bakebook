@@ -1,15 +1,15 @@
 {
-  "name": "bakebook",
+  "name": "carbook",
   "version": "0.1.0",
-  "description": "Bakebook",
+  "description": "Carbook",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1oginov/Bakebook.git"
+    "url": "git+https://github.com/1oginov/Carbook.git"
   },
   "author": "Danila Loginov <danila@loginov.rocks> (https://loginov.rocks)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/1oginov/Bakebook/issues"
+    "url": "https://github.com/1oginov/Carbook/issues"
   },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -21,7 +21,7 @@
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "16.0.0",
-    "react-native": "0.50.3",
+    "react-native": "0.51.0",
     "react-native-material-kit": "^0.5.1",
     "react-native-vector-icons": "^4.4.2",
     "react-navigation": "^1.0.0-beta.20",

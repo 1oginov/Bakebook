@@ -40,12 +40,12 @@ export default class App extends Component {
 
   componentWillMount() {
     firebase.initializeApp({
-      apiKey: 'AIzaSyADc229G7MWz52sJ0V_KKMJWoIywjTcEfQ',
-      authDomain: 'loginov-rocks-bakebook.firebaseapp.com',
-      databaseURL: 'https://loginov-rocks-bakebook.firebaseio.com',
-      projectId: 'loginov-rocks-bakebook',
-      storageBucket: 'loginov-rocks-bakebook.appspot.com',
-      messagingSenderId: '576336141494',
+      apiKey: 'AIzaSyAS2IZMyU2IkRsKoVFuUOrcVZ4EE-9VNeE',
+      authDomain: 'loginov-rocks-carbook.firebaseapp.com',
+      databaseURL: 'https://loginov-rocks-carbook.firebaseio.com',
+      projectId: 'loginov-rocks-carbook',
+      storageBucket: 'loginov-rocks-carbook.appspot.com',
+      messagingSenderId: '740978136427',
     });
 
     firebase.auth().onAuthStateChanged(user => this.setState({ isAuthenticated: !!user }));
@@ -59,7 +59,7 @@ export default class App extends Component {
       case false:
         return (
           <View style={styles.splash}>
-            <Text style={styles.headline}>Bakebook</Text>
+            <Text style={styles.headline}>Carbook</Text>
             <Login />
           </View>
         );
@@ -67,7 +67,7 @@ export default class App extends Component {
       default:
         return (
           <View style={styles.splash}>
-            <Text style={styles.headline}>Bakebook</Text>
+            <Text style={styles.headline}>Carbook</Text>
             <Loader />
           </View>
         );
