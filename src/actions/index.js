@@ -1,16 +1,18 @@
 import firebase from 'firebase';
 
+import * as T from './types';
+
 export const selectRecipe = recipe => ({
-  type: 'RECIPE_SELECTED',
+  type: T.VEHICLE_SELECT,
   payload: recipe,
 });
 
 export const selectNone = () => ({
-  type: 'NONE_SELECTED',
+  type: T.VEHICLE_DESELECT,
 });
 
 export const formUpdate = ({ prop, value }) => ({
-  type: 'FORM_UPDATE',
+  type: T.VEHICLE_FORM_UPDATE,
   payload: { prop, value },
 });
 
@@ -20,7 +22,7 @@ export const createNewRecipe = ({ title, category, notes }) => {
   return dispatch => firebase.database().ref(`/users/${currentUser.uid}/recipes`)
     .push({ title, category, notes })
     .then(() => {
-      dispatch({ type: 'NEW_RECIPE' });
+      dispatch({ type: T.VEHICLE_STORE });
     });
 };
 
@@ -29,7 +31,7 @@ export const loadInitialRecipes = () => {
 
   return dispatch => firebase.database().ref(`/users/${currentUser.uid}/recipes`)
     .on('value', (snapshot) => {
-      dispatch({ type: 'INITIAL_FETCH', payload: snapshot.val() });
+      dispatch({ type: T.VEHICLES_FETCH, payload: snapshot.val() });
     });
 };
 
@@ -39,12 +41,12 @@ export const deleteRecipe = (uid) => {
   return dispatch => firebase.database().ref(`/users/${currentUser.uid}/recipes/${uid}`)
     .remove()
     .then(() => {
-      dispatch({ type: 'DELETE_RECIPE' });
+      dispatch({ type: T.VEHICLE_DELETE });
     });
 };
 
 export const updateRecipe = recipe => ({
-  type: 'UPDATE_RECIPE',
+  type: T.VEHICLE_EDIT,
   payload: recipe,
 });
 
@@ -58,6 +60,6 @@ export const saveRecipe = ({
       uid, title, category, notes,
     })
     .then(() => {
-      dispatch({ type: 'SAVE_RECIPE' });
+      dispatch({ type: T.VEHICLE_UPDATE });
     });
 };

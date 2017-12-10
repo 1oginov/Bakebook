@@ -1,3 +1,5 @@
+import * as T from '../actions/types';
+
 const initialState = {
   recipes: [],
   isRecipeSelected: false,
@@ -11,33 +13,33 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'INITIAL_FETCH':
+    case T.VEHICLES_FETCH:
       return {
         ...state,
         recipes: action.payload,
       };
 
-    case 'RECIPE_SELECTED':
+    case T.VEHICLE_SELECT:
       return {
         ...state,
         isRecipeSelected: true,
         recipeSelected: action.payload,
       };
 
-    case 'NONE_SELECTED':
+    case T.VEHICLE_DESELECT:
       return {
         ...state,
         isRecipeSelected: false,
         personSelected: null,
       };
 
-    case 'FORM_UPDATE':
+    case T.VEHICLE_FORM_UPDATE:
       return {
         ...state,
         [action.payload.prop]: action.payload.value,
       };
 
-    case 'NEW_RECIPE':
+    case T.VEHICLE_STORE:
       return {
         ...state,
         title: '',
@@ -45,13 +47,7 @@ export default (state = initialState, action) => {
         notes: '',
       };
 
-    case 'ADD_RECIPE':
-      return {
-        ...state,
-        ...action.newRecipe,
-      };
-
-    case 'UPDATE_RECIPE':
+    case T.VEHICLE_EDIT:
       return {
         ...state,
         isUpdating: true,
@@ -61,7 +57,7 @@ export default (state = initialState, action) => {
         notes: action.payload.notes,
       };
 
-    case 'SAVE_RECIPE':
+    case T.VEHICLE_UPDATE:
       return {
         ...state,
         isRecipeSelected: false,
@@ -72,7 +68,7 @@ export default (state = initialState, action) => {
         notes: '',
       };
 
-    case 'DELETE_RECIPE':
+    case T.VEHICLE_DELETE:
       return {
         ...state,
         isRecipeSelected: false,
