@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 import RecipeDetail from './RecipeDetail';
 import RecipeItem from './RecipeItem';
-import { loadInitialRecipes } from '../actions';
+import { fetchVehicles } from '../actions';
 
 const styles = {
   container: {
@@ -24,7 +24,7 @@ class RecipeList extends Component {
   };
 
   componentWillMount() {
-    this.props.loadInitialRecipes();
+    this.props.fetchVehicles();
   }
 
   renderInitialView() {
@@ -59,7 +59,7 @@ class RecipeList extends Component {
 RecipeList.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
   isRecipeSelected: PropTypes.bool.isRequired,
-  loadInitialRecipes: PropTypes.func.isRequired,
+  fetchVehicles: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -67,4 +67,4 @@ const mapStateToProps = state => ({
   isRecipeSelected: state.RecipesReducer.isRecipeSelected,
 });
 
-export default connect(mapStateToProps, { loadInitialRecipes })(RecipeList);
+export default connect(mapStateToProps, { fetchVehicles })(RecipeList);

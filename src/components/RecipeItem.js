@@ -9,7 +9,7 @@ import * as actions from '../actions';
 const theme = getTheme();
 
 const RecipeItem = props => (
-  <TouchableWithoutFeedback onPress={() => props.selectRecipe(props.recipe)}>
+  <TouchableWithoutFeedback onPress={() => props.selectVehicle(props.recipe)}>
     <View style={theme.cardStyle}>
       <Image
         source={{ uri: 'http://www.getmdl.io/assets/demos/welcome_card.jpg' }}
@@ -26,7 +26,7 @@ RecipeItem.propTypes = {
     title: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
   }).isRequired,
-  selectRecipe: PropTypes.func.isRequired,
+  selectVehicle: PropTypes.func.isRequired,
 };
 
 export default connect(null, actions)(RecipeItem);
