@@ -2,6 +2,51 @@ import firebase from 'firebase';
 
 import * as T from './types';
 
+/**
+ * Deselect Vehicle action creator.
+ * @returns {{type: string}}
+ */
+export const deselectVehicle = () => ({
+  type: T.VEHICLE_DESELECT,
+});
+
+/**
+ * Fetch Vehicles action creator.
+ * @returns {function}
+ */
+export const fetchVehicles = () => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles`)
+    .on('value', (snapshot) => {
+      let vehicles = snapshot.val();
+
+      if (!vehicles) {
+        vehicles = {};
+      }
+
+      // Provide vehicles with UIDs
+      for (const uid of Object.keys(vehicles)) { // eslint-disable-line no-restricted-syntax
+        vehicles[uid].uid = uid;
+      }
+
+      dispatch({
+        type: T.VEHICLES_FETCH,
+        payload: vehicles,
+      });
+    });
+};
+
+/**
+ * Select Vehicle action creator.
+ * @param {string} uid
+ * @returns {{type: string, payload: string}}
+ */
+export const selectVehicle = uid => ({
+  type: T.VEHICLE_SELECT,
+  payload: uid,
+});
+
 export const deleteVehicle = (uid) => {
   const { currentUser } = firebase.auth();
 
@@ -14,29 +59,8 @@ export const deleteVehicle = (uid) => {
     });
 };
 
-export const deselectVehicle = () => ({
-  type: T.VEHICLE_DESELECT,
-});
-
 export const editVehicle = vehicle => ({
   type: T.VEHICLE_EDIT,
-  payload: vehicle,
-});
-
-export const fetchVehicles = () => {
-  const { currentUser } = firebase.auth();
-
-  return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles`)
-    .on('value', (snapshot) => {
-      dispatch({
-        type: T.VEHICLES_FETCH,
-        payload: snapshot.val(),
-      });
-    });
-};
-
-export const selectVehicle = vehicle => ({
-  type: T.VEHICLE_SELECT,
   payload: vehicle,
 });
 

@@ -34,7 +34,7 @@ class RecipeList extends Component {
 
     this.dataSource = ds.cloneWithRows(this.props.recipes);
 
-    if (this.props.isRecipeSelected) {
+    if (this.props.isVehicleSelected) {
       return <RecipeDetail />;
     }
 
@@ -57,14 +57,14 @@ class RecipeList extends Component {
 }
 
 RecipeList.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isRecipeSelected: PropTypes.bool.isRequired,
   fetchVehicles: PropTypes.func.isRequired,
+  isVehicleSelected: PropTypes.bool.isRequired,
+  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const mapStateToProps = state => ({
   recipes: _.map(state.RecipesReducer.recipes, (val, uid) => ({ ...val, uid })),
-  isRecipeSelected: state.RecipesReducer.isRecipeSelected,
+  isVehicleSelected: !!state.RecipesReducer.selectedVehicle,
 });
 
 export default connect(mapStateToProps, { fetchVehicles })(RecipeList);

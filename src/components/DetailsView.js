@@ -39,7 +39,7 @@ DetailsView.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  recipe: state.RecipesReducer.recipeSelected,
+  recipe: state.RecipesReducer.selectedVehicle,
 });
 
 export default connect(mapStateToProps, actions)(DetailsView);

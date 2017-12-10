@@ -1,10 +1,9 @@
 import * as T from '../actions/types';
 
 const initialState = {
-  recipes: [],
-  isRecipeSelected: false,
+  selectedVehicle: null, // Object|null
+  recipes: {},
   isUpdating: false,
-  recipeSelected: null,
   uid: '',
   title: '',
   category: '',
@@ -13,24 +12,22 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case T.VEHICLES_FETCH:
+    case T.VEHICLE_DESELECT:
       return {
         ...state,
-        recipes: action.payload,
+        selectedVehicle: null,
       };
 
     case T.VEHICLE_SELECT:
       return {
         ...state,
-        isRecipeSelected: true,
-        recipeSelected: action.payload,
+        selectedVehicle: state.recipes[action.payload] ? state.recipes[action.payload] : null,
       };
 
-    case T.VEHICLE_DESELECT:
+    case T.VEHICLES_FETCH:
       return {
         ...state,
-        isRecipeSelected: false,
-        personSelected: null,
+        recipes: action.payload,
       };
 
     case T.VEHICLE_FORM_UPDATE:
@@ -60,7 +57,6 @@ export default (state = initialState, action) => {
     case T.VEHICLE_UPDATE:
       return {
         ...state,
-        isRecipeSelected: false,
         isUpdating: false,
         uid: '',
         title: '',
@@ -71,8 +67,7 @@ export default (state = initialState, action) => {
     case T.VEHICLE_DELETE:
       return {
         ...state,
-        isRecipeSelected: false,
-        recipeSelected: null,
+        selectedVehicle: null,
       };
 
     default:
