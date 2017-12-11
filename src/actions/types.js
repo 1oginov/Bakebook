@@ -17,6 +17,12 @@ export const VEHICLE_DESELECT = 'VEHICLE_DESELECT';
 export const VEHICLE_EDIT = 'VEHICLE_EDIT';
 
 /**
+ * Vehicle Edit Form Update action type.
+ * @type {string}
+ */
+export const VEHICLE_EDIT_FORM_UPDATE = 'VEHICLE_EDIT_FORM_UPDATE';
+
+/**
  * Vehicle Form Update action type.
  * @type {string}
  */

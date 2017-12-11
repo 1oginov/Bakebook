@@ -24,9 +24,7 @@ class UpdateRecipe extends Component {
       uid, title, category, notes,
     } = this.props;
 
-    this.props.updateVehicle({
-      uid, title, category, notes,
-    });
+    this.props.updateVehicle(uid, { category, notes, title });
   }
 
   render() {
@@ -35,17 +33,17 @@ class UpdateRecipe extends Component {
         <Text>Update recipe</Text>
         <MKTextField
           value={this.props.title}
-          onChangeText={value => this.props.updateVehicleForm({ prop: 'title', value })}
+          onChangeText={value => this.props.updateVehicleEditForm('title', value)}
           placeholder="Title"
         />
         <MKTextField
           value={this.props.category}
-          onChangeText={value => this.props.updateVehicleForm({ prop: 'category', value })}
+          onChangeText={value => this.props.updateVehicleEditForm('category', value)}
           placeholder="Category"
         />
         <MKTextField
           value={this.props.notes}
-          onChangeText={value => this.props.updateVehicleForm({ prop: 'notes', value })}
+          onChangeText={value => this.props.updateVehicleEditForm('notes', value)}
           placeholder="Notes"
         />
         <Button onPress={this.onButtonPress} />
@@ -55,21 +53,22 @@ class UpdateRecipe extends Component {
 }
 
 UpdateRecipe.propTypes = {
-  uid: PropType.string.isRequired,
-  title: PropType.string.isRequired,
   category: PropType.string.isRequired,
   notes: PropType.string.isRequired,
+  title: PropType.string.isRequired,
+  uid: PropType.string.isRequired,
   updateVehicle: PropType.func.isRequired,
-  updateVehicleForm: PropType.func.isRequired,
+  updateVehicleEditForm: PropType.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const {
-    uid, title, category, notes,
-  } = state.RecipesReducer;
+  const { title, category, notes } = state.RecipesReducer.vehicleEditForm;
 
   return {
-    uid, title, category, notes,
+    category,
+    notes,
+    title,
+    uid: state.RecipesReducer.editingVehicle,
   };
 };
 

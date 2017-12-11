@@ -7,14 +7,18 @@ import * as actions from '../actions';
 import DetailsView from './DetailsView';
 import UpdateRecipe from './UpdateRecipe';
 
-const RecipeDetail = props => <View>{props.isUpdating ? <UpdateRecipe /> : <DetailsView />}</View>;
+const RecipeDetail = props => (
+  <View>
+    {props.isEditingVehicle ? <UpdateRecipe /> : <DetailsView />}
+  </View>
+);
 
 RecipeDetail.propTypes = {
-  isUpdating: PropTypes.bool.isRequired,
+  isEditingVehicle: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  isUpdating: state.RecipesReducer.isUpdating,
+  isEditingVehicle: !!state.RecipesReducer.editingVehicle,
 });
 
 export default connect(mapStateToProps, actions)(RecipeDetail);

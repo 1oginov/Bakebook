@@ -12,7 +12,7 @@ const theme = getTheme();
 const DetailsView = props => (
   <ScrollView>
     <Icon name="close" size={48} onPress={() => props.deselectVehicle()} />
-    <Icon name="pencil" size={48} onPress={() => props.editVehicle(props.recipe)} />
+    <Icon name="pencil" size={48} onPress={() => props.editVehicle(props.recipe.uid)} />
     <Icon name="delete" size={48} onPress={() => props.deleteVehicle(props.recipe.uid)} />
     <View style={theme.cardStyle}>
       <Image

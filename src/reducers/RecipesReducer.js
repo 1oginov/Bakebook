@@ -1,9 +1,14 @@
 import * as T from '../actions/types';
 
 const initialState = {
+  editingVehicle: '', // string
   selectedVehicle: null, // Object|null
+  vehicleEditForm: {
+    category: '', // string
+    notes: '', // string
+    title: '', // string
+  },
   recipes: {},
-  isUpdating: false,
   uid: '',
   title: '',
   category: '',
@@ -12,16 +17,60 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case T.VEHICLE_DELETE:
+      return {
+        ...state,
+        selectedVehicle: null,
+      };
+
     case T.VEHICLE_DESELECT:
       return {
         ...state,
         selectedVehicle: null,
       };
 
+    case T.VEHICLE_EDIT: {
+      const vehicle = state.recipes[action.payload];
+
+      if (!vehicle) {
+        return state;
+      }
+
+      return {
+        ...state,
+        editingVehicle: vehicle.uid,
+        vehicleEditForm: {
+          category: vehicle.category,
+          notes: vehicle.notes,
+          title: vehicle.title,
+        },
+      };
+    }
+
+    case T.VEHICLE_EDIT_FORM_UPDATE:
+      return {
+        ...state,
+        vehicleEditForm: {
+          ...state.vehicleEditForm,
+          [action.payload.prop]: action.payload.value,
+        },
+      };
+
     case T.VEHICLE_SELECT:
       return {
         ...state,
         selectedVehicle: state.recipes[action.payload] ? state.recipes[action.payload] : null,
+      };
+
+    case T.VEHICLE_UPDATE:
+      return {
+        ...state,
+        editingVehicle: '',
+        vehicleEditForm: {
+          category: '',
+          notes: '',
+          title: '',
+        },
       };
 
     case T.VEHICLES_FETCH:
@@ -42,32 +91,6 @@ export default (state = initialState, action) => {
         title: '',
         category: '',
         notes: '',
-      };
-
-    case T.VEHICLE_EDIT:
-      return {
-        ...state,
-        isUpdating: true,
-        uid: action.payload.uid,
-        title: action.payload.title,
-        category: action.payload.category,
-        notes: action.payload.notes,
-      };
-
-    case T.VEHICLE_UPDATE:
-      return {
-        ...state,
-        isUpdating: false,
-        uid: '',
-        title: '',
-        category: '',
-        notes: '',
-      };
-
-    case T.VEHICLE_DELETE:
-      return {
-        ...state,
-        selectedVehicle: null,
       };
 
     default:
