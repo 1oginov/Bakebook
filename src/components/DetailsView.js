@@ -11,9 +11,9 @@ const theme = getTheme();
 
 const DetailsView = props => (
   <ScrollView>
-    <Icon name="close" size={48} onPress={() => props.deselectVehicle()} />
-    <Icon name="pencil" size={48} onPress={() => props.editVehicle(props.recipe.uid)} />
-    <Icon name="delete" size={48} onPress={() => props.deleteVehicle(props.recipe.uid)} />
+    <Icon name="close" size={48} onPress={() => props.deselect()} />
+    <Icon name="pencil" size={48} onPress={() => props.edit(props.recipe.uid)} />
+    <Icon name="delete" size={48} onPress={() => props.destroy(props.recipe.uid)} />
     <View style={theme.cardStyle}>
       <Image
         source={{ uri: 'http://www.getmdl.io/assets/demos/welcome_card.jpg' }}
@@ -33,9 +33,9 @@ DetailsView.propTypes = {
     category: PropTypes.string.isRequired,
     notes: PropTypes.string.isRequired,
   }).isRequired,
-  deselectVehicle: PropTypes.func.isRequired,
-  editVehicle: PropTypes.func.isRequired,
-  deleteVehicle: PropTypes.func.isRequired,
+  deselect: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
+  destroy: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

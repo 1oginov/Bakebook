@@ -24,7 +24,7 @@ class UpdateRecipe extends Component {
       uid, title, category, notes,
     } = this.props;
 
-    this.props.updateVehicle(uid, { category, notes, title });
+    this.props.update(uid, { category, notes, title });
   }
 
   render() {
@@ -33,17 +33,17 @@ class UpdateRecipe extends Component {
         <Text>Update recipe</Text>
         <MKTextField
           value={this.props.title}
-          onChangeText={value => this.props.updateVehicleEditForm('title', value)}
+          onChangeText={value => this.props.updateEditForm('title', value)}
           placeholder="Title"
         />
         <MKTextField
           value={this.props.category}
-          onChangeText={value => this.props.updateVehicleEditForm('category', value)}
+          onChangeText={value => this.props.updateEditForm('category', value)}
           placeholder="Category"
         />
         <MKTextField
           value={this.props.notes}
-          onChangeText={value => this.props.updateVehicleEditForm('notes', value)}
+          onChangeText={value => this.props.updateEditForm('notes', value)}
           placeholder="Notes"
         />
         <Button onPress={this.onButtonPress} />
@@ -57,8 +57,8 @@ UpdateRecipe.propTypes = {
   notes: PropType.string.isRequired,
   title: PropType.string.isRequired,
   uid: PropType.string.isRequired,
-  updateVehicle: PropType.func.isRequired,
-  updateVehicleEditForm: PropType.func.isRequired,
+  update: PropType.func.isRequired,
+  updateEditForm: PropType.func.isRequired,
 };
 
 const mapStateToProps = (state) => {

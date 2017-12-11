@@ -3,11 +3,19 @@ import firebase from 'firebase';
 import * as T from './types';
 
 /**
- * Delete Vehicle action creator.
+ * Deselect action creator.
+ * @returns {{type: string}}
+ */
+export const deselect = () => ({
+  type: T.DESELECT,
+});
+
+/**
+ * Destroy (Delete) action creator.
  * @param {string} uid
  * @returns {function}
  */
-export const deleteVehicle = (uid) => {
+export const destroy = (uid) => {
   const { currentUser } = firebase.auth();
 
   return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles/${uid}`)
@@ -20,28 +28,20 @@ export const deleteVehicle = (uid) => {
 };
 
 /**
- * Deselect Vehicle action creator.
- * @returns {{type: string}}
- */
-export const deselectVehicle = () => ({
-  type: T.DESELECT,
-});
-
-/**
- * Edit Vehicle action creator.
+ * Edit action creator.
  * @param {string} uid
  * @returns {{type: string, payload: string}}
  */
-export const editVehicle = uid => ({
+export const edit = uid => ({
   type: T.EDIT,
   payload: uid,
 });
 
 /**
- * Fetch Vehicles action creator.
+ * Fetch action creator.
  * @returns {function}
  */
-export const fetchVehicles = () => {
+export const fetch = () => {
   const { currentUser } = firebase.auth();
 
   return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles`)
@@ -65,21 +65,21 @@ export const fetchVehicles = () => {
 };
 
 /**
- * Select Vehicle action creator.
+ * Select action creator.
  * @param {string} uid
  * @returns {{type: string, payload: string}}
  */
-export const selectVehicle = uid => ({
+export const select = uid => ({
   type: T.SELECT,
   payload: uid,
 });
 
 /**
- * Store Vehicle action creator.
+ * Store action creator.
  * @param {{category: string, notes: string, title: string}}
  * @returns {function}
  */
-export const storeVehicle = ({ category, notes, title }) => {
+export const store = ({ category, notes, title }) => {
   const { currentUser } = firebase.auth();
 
   return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles`)
@@ -92,12 +92,12 @@ export const storeVehicle = ({ category, notes, title }) => {
 };
 
 /**
- * Update Vehicle action creator.
+ * Update action creator.
  * @param {string} uid
  * @param {{category: string, notes: string, title: string}}
  * @returns {function}
  */
-export const updateVehicle = (uid, { category, notes, title }) => {
+export const update = (uid, { category, notes, title }) => {
   const { currentUser } = firebase.auth();
 
   return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles/${uid}`)
@@ -110,12 +110,12 @@ export const updateVehicle = (uid, { category, notes, title }) => {
 };
 
 /**
- * Update Vehicle Create Form action creator.
+ * Update Create Form action creator.
  * @param {string} prop
  * @param {string} value
  * @returns {{type: string, payload: {prop: string, value: string}}}
  */
-export const updateVehicleCreateForm = (prop, value) => ({
+export const updateCreateForm = (prop, value) => ({
   type: T.CREATE_FORM_UPDATE,
   payload: {
     prop,
@@ -124,12 +124,12 @@ export const updateVehicleCreateForm = (prop, value) => ({
 });
 
 /**
- * Update Vehicle Edit Form action creator.
+ * Update Edit Form action creator.
  * @param {string} prop
  * @param {string} value
  * @returns {{type: string, payload: {prop: string, value: string}}}
  */
-export const updateVehicleEditForm = (prop, value) => ({
+export const updateEditForm = (prop, value) => ({
   type: T.EDIT_FORM_UPDATE,
   payload: {
     prop,

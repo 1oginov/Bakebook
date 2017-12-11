@@ -28,7 +28,7 @@ class AddRecipe extends Component {
   onButtonPress() {
     const { category, notes, title } = this.props;
 
-    this.props.storeVehicle({ category, notes, title });
+    this.props.store({ category, notes, title });
 
     this.props.navigation.navigate('RecipeList');
   }
@@ -39,17 +39,17 @@ class AddRecipe extends Component {
         <Text>Add recipe</Text>
         <MKTextField
           value={this.props.title}
-          onChangeText={value => this.props.updateVehicleCreateForm('title', value)}
+          onChangeText={value => this.props.updateCreateForm('title', value)}
           placeholder="Title"
         />
         <MKTextField
           value={this.props.category}
-          onChangeText={value => this.props.updateVehicleCreateForm('category', value)}
+          onChangeText={value => this.props.updateCreateForm('category', value)}
           placeholder="Category"
         />
         <MKTextField
           value={this.props.notes}
-          onChangeText={value => this.props.updateVehicleCreateForm('notes', value)}
+          onChangeText={value => this.props.updateCreateForm('notes', value)}
           placeholder="Notes"
         />
         <Button onPress={this.onButtonPress} />
@@ -62,9 +62,9 @@ AddRecipe.propTypes = {
   category: PropType.string.isRequired,
   notes: PropType.string.isRequired,
   title: PropType.string.isRequired,
-  storeVehicle: PropType.func.isRequired,
+  store: PropType.func.isRequired,
   navigation: PropType.shape({ navigate: PropType.func }).isRequired,
-  updateVehicleCreateForm: PropType.func.isRequired,
+  updateCreateForm: PropType.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
