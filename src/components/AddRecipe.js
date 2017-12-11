@@ -68,7 +68,7 @@ AddRecipe.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { title, category, notes } = state.RecipesReducer.vehicleCreateForm;
+  const { title, category, notes } = state.vehicles.createForm;
 
   return { title, category, notes };
 };

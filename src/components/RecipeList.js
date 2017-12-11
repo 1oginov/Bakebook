@@ -63,8 +63,8 @@ RecipeList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  recipes: _.map(state.RecipesReducer.recipes, (val, uid) => ({ ...val, uid })),
-  isVehicleSelected: !!state.RecipesReducer.selectedVehicle,
+  recipes: _.map(state.vehicles.list, (val, uid) => ({ ...val, uid })),
+  isVehicleSelected: !!state.vehicles.selected,
 });
 
 export default connect(mapStateToProps, { fetchVehicles })(RecipeList);

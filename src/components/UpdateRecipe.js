@@ -62,13 +62,13 @@ UpdateRecipe.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { title, category, notes } = state.RecipesReducer.vehicleEditForm;
+  const { title, category, notes } = state.vehicles.editForm;
 
   return {
     category,
     notes,
     title,
-    uid: state.RecipesReducer.editingVehicle,
+    uid: state.vehicles.editing,
   };
 };
 

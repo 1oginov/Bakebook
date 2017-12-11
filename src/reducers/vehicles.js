@@ -1,28 +1,52 @@
 import * as T from '../actions/types';
 
+/**
+ * Initial state.
+ * @type {{
+ *     createForm: {
+ *         category: string,
+ *         notes: string,
+ *         title: string
+ *     },
+ *     editForm: {
+ *         category: string,
+ *         notes: string,
+ *         title: string
+ *     },
+ *     editing: string,
+ *     list: Object,
+ *     selected: Object|null
+ * }}
+ */
 const initialState = {
-  editingVehicle: '', // string
-  selectedVehicle: null, // Object|null
-  vehicleCreateForm: {
-    category: '', // string
-    notes: '', // string
-    title: '', // string
+  createForm: {
+    category: '',
+    notes: '',
+    title: '',
   },
-  vehicleEditForm: {
-    category: '', // string
-    notes: '', // string
-    title: '', // string
+  editForm: {
+    category: '',
+    notes: '',
+    title: '',
   },
-  recipes: {},
+  editing: '',
+  list: {},
+  selected: null,
 };
 
+/**
+ * Vehicles reducer.
+ * @param {Object} state
+ * @param {Object} action
+ * @returns {Object}
+ */
 export default (state = initialState, action) => {
   switch (action.type) {
     case T.VEHICLE_CREATE_FORM_UPDATE:
       return {
         ...state,
-        vehicleCreateForm: {
-          ...state.vehicleCreateForm,
+        createForm: {
+          ...state.createForm,
           [action.payload.prop]: action.payload.value,
         },
       };
@@ -30,17 +54,17 @@ export default (state = initialState, action) => {
     case T.VEHICLE_DELETE:
       return {
         ...state,
-        selectedVehicle: null,
+        selected: null,
       };
 
     case T.VEHICLE_DESELECT:
       return {
         ...state,
-        selectedVehicle: null,
+        selected: null,
       };
 
     case T.VEHICLE_EDIT: {
-      const vehicle = state.recipes[action.payload];
+      const vehicle = state.list[action.payload];
 
       if (!vehicle) {
         return state;
@@ -48,20 +72,20 @@ export default (state = initialState, action) => {
 
       return {
         ...state,
-        editingVehicle: vehicle.uid,
-        vehicleEditForm: {
+        editForm: {
           category: vehicle.category,
           notes: vehicle.notes,
           title: vehicle.title,
         },
+        editing: vehicle.uid,
       };
     }
 
     case T.VEHICLE_EDIT_FORM_UPDATE:
       return {
         ...state,
-        vehicleEditForm: {
-          ...state.vehicleEditForm,
+        editForm: {
+          ...state.editForm,
           [action.payload.prop]: action.payload.value,
         },
       };
@@ -69,13 +93,13 @@ export default (state = initialState, action) => {
     case T.VEHICLE_SELECT:
       return {
         ...state,
-        selectedVehicle: state.recipes[action.payload] ? state.recipes[action.payload] : null,
+        selected: state.list[action.payload] ? state.list[action.payload] : null,
       };
 
     case T.VEHICLE_STORE:
       return {
         ...state,
-        vehicleCreateForm: {
+        createForm: {
           category: '',
           notes: '',
           title: '',
@@ -85,18 +109,18 @@ export default (state = initialState, action) => {
     case T.VEHICLE_UPDATE:
       return {
         ...state,
-        editingVehicle: '',
-        vehicleEditForm: {
+        editForm: {
           category: '',
           notes: '',
           title: '',
         },
+        editing: '',
       };
 
     case T.VEHICLES_FETCH:
       return {
         ...state,
-        recipes: action.payload,
+        list: action.payload,
       };
 
     default:

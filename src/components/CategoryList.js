@@ -37,7 +37,7 @@ CategoryList.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const recipes = _.map(state.RecipesReducer.recipes, (val, uid) => ({ ...val, uid }));
+  const recipes = _.map(state.vehicles.list, (val, uid) => ({ ...val, uid }));
 
   const categories = _.chain(recipes)
     .groupBy('category')

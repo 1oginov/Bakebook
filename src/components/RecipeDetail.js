@@ -18,7 +18,7 @@ RecipeDetail.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isEditingVehicle: !!state.RecipesReducer.editingVehicle,
+  isEditingVehicle: !!state.vehicles.editing,
 });
 
 export default connect(mapStateToProps, actions)(RecipeDetail);

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import RecipesReducer from './RecipesReducer';
+import vehicles from './vehicles';
 
 export default combineReducers({
-  RecipesReducer,
+  vehicles,
 });
