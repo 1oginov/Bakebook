@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
 
-import * as actions from '../actions';
+import * as actions from '../vehicles/actions';
 import DetailsView from './DetailsView';
 import UpdateRecipe from './UpdateRecipe';
 

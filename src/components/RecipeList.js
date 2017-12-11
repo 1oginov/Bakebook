@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 import RecipeDetail from './RecipeDetail';
 import RecipeItem from './RecipeItem';
-import { fetchVehicles } from '../actions';
+import { fetchVehicles } from '../vehicles/actions';
 
 const styles = {
   container: {

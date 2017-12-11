@@ -14,7 +14,7 @@ export const deleteVehicle = (uid) => {
     .remove()
     .then(() => {
       dispatch({
-        type: T.VEHICLE_DELETE,
+        type: T.DELETE,
       });
     });
 };
@@ -24,7 +24,7 @@ export const deleteVehicle = (uid) => {
  * @returns {{type: string}}
  */
 export const deselectVehicle = () => ({
-  type: T.VEHICLE_DESELECT,
+  type: T.DESELECT,
 });
 
 /**
@@ -33,7 +33,7 @@ export const deselectVehicle = () => ({
  * @returns {{type: string, payload: string}}
  */
 export const editVehicle = uid => ({
-  type: T.VEHICLE_EDIT,
+  type: T.EDIT,
   payload: uid,
 });
 
@@ -58,7 +58,7 @@ export const fetchVehicles = () => {
       }
 
       dispatch({
-        type: T.VEHICLES_FETCH,
+        type: T.FETCH,
         payload: vehicles,
       });
     });
@@ -70,7 +70,7 @@ export const fetchVehicles = () => {
  * @returns {{type: string, payload: string}}
  */
 export const selectVehicle = uid => ({
-  type: T.VEHICLE_SELECT,
+  type: T.SELECT,
   payload: uid,
 });
 
@@ -86,7 +86,7 @@ export const storeVehicle = ({ category, notes, title }) => {
     .push({ category, notes, title })
     .then(() => {
       dispatch({
-        type: T.VEHICLE_STORE,
+        type: T.STORE,
       });
     });
 };
@@ -104,7 +104,7 @@ export const updateVehicle = (uid, { category, notes, title }) => {
     .set({ category, notes, title })
     .then(() => {
       dispatch({
-        type: T.VEHICLE_UPDATE,
+        type: T.UPDATE,
       });
     });
 };
@@ -116,7 +116,7 @@ export const updateVehicle = (uid, { category, notes, title }) => {
  * @returns {{type: string, payload: {prop: string, value: string}}}
  */
 export const updateVehicleCreateForm = (prop, value) => ({
-  type: T.VEHICLE_CREATE_FORM_UPDATE,
+  type: T.CREATE_FORM_UPDATE,
   payload: {
     prop,
     value,
@@ -130,7 +130,7 @@ export const updateVehicleCreateForm = (prop, value) => ({
  * @returns {{type: string, payload: {prop: string, value: string}}}
  */
 export const updateVehicleEditForm = (prop, value) => ({
-  type: T.VEHICLE_EDIT_FORM_UPDATE,
+  type: T.EDIT_FORM_UPDATE,
   payload: {
     prop,
     value,

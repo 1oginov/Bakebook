@@ -5,7 +5,7 @@ import { ScrollView, Text } from 'react-native';
 import { getTheme, MKButton, MKTextField } from 'react-native-material-kit';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import * as actions from '../actions';
+import * as actions from '../vehicles/actions';
 
 const theme = getTheme();
 

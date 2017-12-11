@@ -42,7 +42,7 @@ const initialState = {
  */
 export default (state = initialState, action) => {
   switch (action.type) {
-    case T.VEHICLE_CREATE_FORM_UPDATE:
+    case T.CREATE_FORM_UPDATE:
       return {
         ...state,
         createForm: {
@@ -51,19 +51,19 @@ export default (state = initialState, action) => {
         },
       };
 
-    case T.VEHICLE_DELETE:
+    case T.DELETE:
       return {
         ...state,
         selected: null,
       };
 
-    case T.VEHICLE_DESELECT:
+    case T.DESELECT:
       return {
         ...state,
         selected: null,
       };
 
-    case T.VEHICLE_EDIT: {
+    case T.EDIT: {
       const vehicle = state.list[action.payload];
 
       if (!vehicle) {
@@ -81,7 +81,7 @@ export default (state = initialState, action) => {
       };
     }
 
-    case T.VEHICLE_EDIT_FORM_UPDATE:
+    case T.EDIT_FORM_UPDATE:
       return {
         ...state,
         editForm: {
@@ -90,13 +90,19 @@ export default (state = initialState, action) => {
         },
       };
 
-    case T.VEHICLE_SELECT:
+    case T.FETCH:
+      return {
+        ...state,
+        list: action.payload,
+      };
+
+    case T.SELECT:
       return {
         ...state,
         selected: state.list[action.payload] ? state.list[action.payload] : null,
       };
 
-    case T.VEHICLE_STORE:
+    case T.STORE:
       return {
         ...state,
         createForm: {
@@ -106,7 +112,7 @@ export default (state = initialState, action) => {
         },
       };
 
-    case T.VEHICLE_UPDATE:
+    case T.UPDATE:
       return {
         ...state,
         editForm: {
@@ -115,12 +121,6 @@ export default (state = initialState, action) => {
           title: '',
         },
         editing: '',
-      };
-
-    case T.VEHICLES_FETCH:
-      return {
-        ...state,
-        list: action.payload,
       };
 
     default:
