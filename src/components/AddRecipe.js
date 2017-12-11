@@ -26,9 +26,9 @@ class AddRecipe extends Component {
   }
 
   onButtonPress() {
-    const { title, category, notes } = this.props;
+    const { category, notes, title } = this.props;
 
-    this.props.storeVehicle({ title, category, notes });
+    this.props.storeVehicle({ category, notes, title });
 
     this.props.navigation.navigate('RecipeList');
   }
@@ -39,17 +39,17 @@ class AddRecipe extends Component {
         <Text>Add recipe</Text>
         <MKTextField
           value={this.props.title}
-          onChangeText={value => this.props.updateVehicleForm({ prop: 'title', value })}
+          onChangeText={value => this.props.updateVehicleCreateForm('title', value)}
           placeholder="Title"
         />
         <MKTextField
           value={this.props.category}
-          onChangeText={value => this.props.updateVehicleForm({ prop: 'category', value })}
+          onChangeText={value => this.props.updateVehicleCreateForm('category', value)}
           placeholder="Category"
         />
         <MKTextField
           value={this.props.notes}
-          onChangeText={value => this.props.updateVehicleForm({ prop: 'notes', value })}
+          onChangeText={value => this.props.updateVehicleCreateForm('notes', value)}
           placeholder="Notes"
         />
         <Button onPress={this.onButtonPress} />
@@ -59,16 +59,16 @@ class AddRecipe extends Component {
 }
 
 AddRecipe.propTypes = {
-  title: PropType.string.isRequired,
   category: PropType.string.isRequired,
   notes: PropType.string.isRequired,
+  title: PropType.string.isRequired,
   storeVehicle: PropType.func.isRequired,
   navigation: PropType.shape({ navigate: PropType.func }).isRequired,
-  updateVehicleForm: PropType.func.isRequired,
+  updateVehicleCreateForm: PropType.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const { title, category, notes } = state.RecipesReducer;
+  const { title, category, notes } = state.RecipesReducer.vehicleCreateForm;
 
   return { title, category, notes };
 };

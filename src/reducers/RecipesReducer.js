@@ -3,20 +3,30 @@ import * as T from '../actions/types';
 const initialState = {
   editingVehicle: '', // string
   selectedVehicle: null, // Object|null
+  vehicleCreateForm: {
+    category: '', // string
+    notes: '', // string
+    title: '', // string
+  },
   vehicleEditForm: {
     category: '', // string
     notes: '', // string
     title: '', // string
   },
   recipes: {},
-  uid: '',
-  title: '',
-  category: '',
-  notes: '',
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case T.VEHICLE_CREATE_FORM_UPDATE:
+      return {
+        ...state,
+        vehicleCreateForm: {
+          ...state.vehicleCreateForm,
+          [action.payload.prop]: action.payload.value,
+        },
+      };
+
     case T.VEHICLE_DELETE:
       return {
         ...state,
@@ -62,6 +72,16 @@ export default (state = initialState, action) => {
         selectedVehicle: state.recipes[action.payload] ? state.recipes[action.payload] : null,
       };
 
+    case T.VEHICLE_STORE:
+      return {
+        ...state,
+        vehicleCreateForm: {
+          category: '',
+          notes: '',
+          title: '',
+        },
+      };
+
     case T.VEHICLE_UPDATE:
       return {
         ...state,
@@ -77,20 +97,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         recipes: action.payload,
-      };
-
-    case T.VEHICLE_FORM_UPDATE:
-      return {
-        ...state,
-        [action.payload.prop]: action.payload.value,
-      };
-
-    case T.VEHICLE_STORE:
-      return {
-        ...state,
-        title: '',
-        category: '',
-        notes: '',
       };
 
     default:

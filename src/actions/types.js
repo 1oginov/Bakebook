@@ -1,4 +1,10 @@
 /**
+ * Vehicle Create Form Update action type.
+ * @type {string}
+ */
+export const VEHICLE_CREATE_FORM_UPDATE = 'VEHICLE_CREATE_FORM_UPDATE';
+
+/**
  * Vehicle Delete action type.
  * @type {string}
  */
@@ -21,12 +27,6 @@ export const VEHICLE_EDIT = 'VEHICLE_EDIT';
  * @type {string}
  */
 export const VEHICLE_EDIT_FORM_UPDATE = 'VEHICLE_EDIT_FORM_UPDATE';
-
-/**
- * Vehicle Form Update action type.
- * @type {string}
- */
-export const VEHICLE_FORM_UPDATE = 'VEHICLE_FORM_UPDATE';
 
 /**
  * Vehicle Select action type.

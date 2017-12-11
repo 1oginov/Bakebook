@@ -75,6 +75,23 @@ export const selectVehicle = uid => ({
 });
 
 /**
+ * Store Vehicle action creator.
+ * @param {{category: string, notes: string, title: string}}
+ * @returns {function}
+ */
+export const storeVehicle = ({ category, notes, title }) => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles`)
+    .push({ category, notes, title })
+    .then(() => {
+      dispatch({
+        type: T.VEHICLE_STORE,
+      });
+    });
+};
+
+/**
  * Update Vehicle action creator.
  * @param {string} uid
  * @param {{category: string, notes: string, title: string}}
@@ -84,15 +101,27 @@ export const updateVehicle = (uid, { category, notes, title }) => {
   const { currentUser } = firebase.auth();
 
   return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles/${uid}`)
-    .set({
-      uid, category, notes, title,
-    })
+    .set({ category, notes, title })
     .then(() => {
       dispatch({
         type: T.VEHICLE_UPDATE,
       });
     });
 };
+
+/**
+ * Update Vehicle Create Form action creator.
+ * @param {string} prop
+ * @param {string} value
+ * @returns {{type: string, payload: {prop: string, value: string}}}
+ */
+export const updateVehicleCreateForm = (prop, value) => ({
+  type: T.VEHICLE_CREATE_FORM_UPDATE,
+  payload: {
+    prop,
+    value,
+  },
+});
 
 /**
  * Update Vehicle Edit Form action creator.
@@ -106,21 +135,4 @@ export const updateVehicleEditForm = (prop, value) => ({
     prop,
     value,
   },
-});
-
-export const storeVehicle = ({ title, category, notes }) => {
-  const { currentUser } = firebase.auth();
-
-  return dispatch => firebase.database().ref(`/users/${currentUser.uid}/vehicles`)
-    .push({ title, category, notes })
-    .then(() => {
-      dispatch({
-        type: T.VEHICLE_STORE,
-      });
-    });
-};
-
-export const updateVehicleForm = ({ prop, value }) => ({
-  type: T.VEHICLE_FORM_UPDATE,
-  payload: { prop, value },
 });
