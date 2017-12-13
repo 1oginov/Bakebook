@@ -1,21 +1,18 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator, View } from 'react-native';
-import { getTheme } from 'react-native-material-kit';
+import React from 'react';
+import { ActivityIndicator } from 'react-native';
 
-const theme = getTheme();
-
-const Loader = ({ size }) => (
-  <View>
-    <ActivityIndicator size={size} color={theme.accentColor} />
-  </View>
+const Loader = ({ color, size }) => (
+  <ActivityIndicator color={color} size={size} />
 );
 
 Loader.propTypes = {
+  color: PropTypes.string,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Loader.defaultProps = {
+  color: 'gray',
   size: 'large',
 };
 
