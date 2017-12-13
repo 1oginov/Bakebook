@@ -4,10 +4,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import { getTheme } from 'react-native-material-kit';
 import firebase from 'firebase';
 
-import Loader from './Loader';
-import Login from './Login';
-import Navigation from './Navigation';
-import store from '../store';
+import Loader from './common/components/Loader';
+import Login from './user/components/Login';
+import Navigation from './common/components/Navigation';
+import store from './store';
 
 const theme = getTheme();
 

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { getTheme, MKButton, MKColor, MKTextField } from 'react-native-material-kit';
 import firebase from 'firebase';
 
-import Loader from './Loader';
+import Loader from '../../common/components/Loader';
 
 const theme = getTheme();
 

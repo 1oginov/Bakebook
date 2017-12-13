@@ -3,53 +3,47 @@ import PropType from 'prop-types';
 import { connect } from 'react-redux';
 import { ScrollView, Text } from 'react-native';
 import { getTheme, MKButton, MKTextField } from 'react-native-material-kit';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import * as actions from '../vehicles/actions';
+import * as actions from '../actions';
 
 const theme = getTheme();
 
 const Button = MKButton.coloredButton()
   .withBackgroundColor(theme.accentColor)
-  .withText('ADD')
+  .withText('UPDATE')
   .build();
 
-class AddRecipe extends Component {
-  static navigationOptions = {
-    tabBarLabel: 'Add recipe',
-    tabBarIcon: ({ tintColor }) => <Icon name="plus-box" size={24} style={{ color: tintColor }} />,
-  };
-
+class UpdateRecipe extends Component {
   constructor(props) {
     super(props);
     this.onButtonPress = this.onButtonPress.bind(this);
   }
 
   onButtonPress() {
-    const { category, notes, title } = this.props;
+    const {
+      uid, title, category, notes,
+    } = this.props;
 
-    this.props.store({ category, notes, title });
-
-    this.props.navigation.navigate('RecipeList');
+    this.props.update(uid, { category, notes, title });
   }
 
   render() {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text>Add recipe</Text>
+        <Text>Update recipe</Text>
         <MKTextField
           value={this.props.title}
-          onChangeText={value => this.props.updateCreateForm('title', value)}
+          onChangeText={value => this.props.updateEditForm('title', value)}
           placeholder="Title"
         />
         <MKTextField
           value={this.props.category}
-          onChangeText={value => this.props.updateCreateForm('category', value)}
+          onChangeText={value => this.props.updateEditForm('category', value)}
           placeholder="Category"
         />
         <MKTextField
           value={this.props.notes}
-          onChangeText={value => this.props.updateCreateForm('notes', value)}
+          onChangeText={value => this.props.updateEditForm('notes', value)}
           placeholder="Notes"
         />
         <Button onPress={this.onButtonPress} />
@@ -58,19 +52,24 @@ class AddRecipe extends Component {
   }
 }
 
-AddRecipe.propTypes = {
+UpdateRecipe.propTypes = {
   category: PropType.string.isRequired,
   notes: PropType.string.isRequired,
   title: PropType.string.isRequired,
-  store: PropType.func.isRequired,
-  navigation: PropType.shape({ navigate: PropType.func }).isRequired,
-  updateCreateForm: PropType.func.isRequired,
+  uid: PropType.string.isRequired,
+  update: PropType.func.isRequired,
+  updateEditForm: PropType.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const { title, category, notes } = state.vehicles.createForm;
+  const { title, category, notes } = state.vehicles.editForm;
 
-  return { title, category, notes };
+  return {
+    category,
+    notes,
+    title,
+    uid: state.vehicles.editing,
+  };
 };
 
-export default connect(mapStateToProps, actions)(AddRecipe);
+export default connect(mapStateToProps, actions)(UpdateRecipe);

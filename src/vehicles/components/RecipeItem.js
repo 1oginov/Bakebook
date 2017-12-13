@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Image, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { getTheme } from 'react-native-material-kit';
 
-import * as actions from '../vehicles/actions';
+import * as actions from '../actions';
 
 const theme = getTheme();
 

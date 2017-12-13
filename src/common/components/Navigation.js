@@ -1,9 +1,9 @@
 import { TabNavigator } from 'react-navigation';
 import { getTheme } from 'react-native-material-kit';
 
-import AddRecipe from './AddRecipe';
-import CategoryList from './CategoryList';
-import RecipeList from './RecipeList';
+import AddRecipe from '../../vehicles/components/AddRecipe';
+import CategoryList from '../../vehicles/components/CategoryList';
+import RecipeList from '../../vehicles/components/RecipeList';
 
 const theme = getTheme();
 
