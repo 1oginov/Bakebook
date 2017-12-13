@@ -1,38 +1,60 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { getTheme, MKButton, MKColor, MKTextField } from 'react-native-material-kit';
 import firebase from 'firebase';
+import React, { Component } from 'react';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import Loader from '../../common/components/Loader';
 
-const theme = getTheme();
-
 const styles = StyleSheet.create({
-  textInput: {
-    color: 'white',
+  buttonContainer: {
+    marginTop: 16,
+  },
+  container: {
+    alignSelf: 'stretch',
+    marginLeft: 32,
+    marginRight: 32,
   },
   error: {
-    color: MKColor.Red,
+    alignSelf: 'center',
+    color: 'red',
+    marginTop: 24,
+  },
+  headline: {
+    alignSelf: 'center',
+    marginBottom: 8,
   },
 });
 
-const Button = MKButton.coloredButton()
-  .withBackgroundColor(theme.accentColor)
-  .withText('LOGIN')
-  .build();
-
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: '',
-      password: '',
       error: '',
       isLoading: false,
+      password: '',
     };
 
+    this.onAuthFailed = this.onAuthFailed.bind(this);
+    this.onAuthSuccess = this.onAuthSuccess.bind(this);
     this.onButtonPress = this.onButtonPress.bind(this);
+  }
+
+  onAuthFailed() {
+    this.setState({
+      error: 'Authentication failed',
+      isLoading: false,
+      password: '',
+    });
+  }
+
+  onAuthSuccess() {
+    this.setState({
+      email: '',
+      error: '',
+      isLoading: false,
+      password: '',
+    });
   }
 
   onButtonPress() {
@@ -45,29 +67,13 @@ export default class Login extends Component {
 
     firebase.auth()
       .signInWithEmailAndPassword(email, password)
-      .then(this.onAuthSuccess.bind(this))
+      .then(this.onAuthSuccess)
       .catch(() => {
         firebase.auth()
           .createUserWithEmailAndPassword(email, password)
-          .then(this.onAuthSuccess.bind(this))
-          .catch(this.onAuthFailed.bind(this));
+          .then(this.onAuthSuccess)
+          .catch(this.onAuthFailed);
       });
-  }
-
-  onAuthSuccess() {
-    this.setState({
-      email: '',
-      password: '',
-      error: '',
-      isLoading: false,
-    });
-  }
-
-  onAuthFailed() {
-    this.setState({
-      error: 'Authentication failed',
-      isLoading: false,
-    });
   }
 
   renderButton() {
@@ -75,29 +81,31 @@ export default class Login extends Component {
       return <Loader />;
     }
 
-    return <Button onPress={this.onButtonPress} />;
+    return <Button onPress={this.onButtonPress} title="Login" />;
   }
 
   render() {
     return (
-      <View>
-        <Text>Login or sign up</Text>
-        <MKTextField
-          text={this.state.email}
-          onTextChange={email => this.setState({ email })}
-          textInputStyle={styles.textInput}
+      <View style={styles.container}>
+        <Text style={styles.headline}>Login or Sign up</Text>
+        <TextInput
+          onChangeText={email => this.setState({ email })}
+          value={this.state.email}
           placeholder="Email"
         />
-        <MKTextField
-          text={this.state.password}
-          onTextChange={password => this.setState({ password })}
-          textInputStyle={styles.textInput}
+        <TextInput
+          onChangeText={password => this.setState({ password })}
+          value={this.state.password}
           placeholder="Password"
-          password
+          secureTextEntry
         />
-        {this.renderButton()}
+        <View style={styles.buttonContainer}>
+          {this.renderButton()}
+        </View>
         <Text style={styles.error}>{this.state.error}</Text>
       </View>
     );
   }
 }
+
+export default Login;
