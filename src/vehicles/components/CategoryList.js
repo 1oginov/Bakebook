@@ -1,11 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { ListView, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { SectionList, StyleSheet, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { connect } from 'react-redux';
 
-import CategoryItem from './CategoryItem';
+import VehicleItem from './VehicleItem';
+
+const styles = StyleSheet.create({
+  sectionHeader: {
+    backgroundColor: 'silver',
+    paddingBottom: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 8,
+  },
+});
 
 class CategoryList extends Component {
   static navigationOptions = {
@@ -13,21 +23,18 @@ class CategoryList extends Component {
     tabBarIcon: ({ tintColor }) => <Icon name="tag" size={24} style={{ color: tintColor }} />,
   };
 
+  /**
+   * TODO: Navigate to `VehicleList` when `VehicleItem.onSelect` invoked.
+   */
   render() {
-    const ds = new ListView.DataSource({
-      rowHasChanged: ((r1, r2) => r1 !== r2),
-    });
-
-    this.dataSource = ds.cloneWithRows(this.props.categories);
-
     return (
-      <View>
-        <ListView
-          enableEmptySections
-          dataSource={this.dataSource}
-          renderRow={rowData => <CategoryItem category={rowData} />}
-        />
-      </View>
+      <SectionList
+        keyExtractor={item => item.uid}
+        renderItem={({ item }) => <VehicleItem vehicle={item} />}
+        renderSectionHeader={({ section }) =>
+          <Text style={styles.sectionHeader}>{section.title}</Text>}
+        sections={this.props.categories}
+      />
     );
   }
 }
@@ -37,13 +44,13 @@ CategoryList.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const recipes = _.map(state.vehicles.list, (val, uid) => ({ ...val, uid }));
+  const list = Object.values(state.vehicles.list);
 
-  const categories = _.chain(recipes)
+  const categories = _.chain(list)
     .groupBy('category')
     .map((value, key) => ({
       title: key,
-      recipes: value,
+      data: value,
     }))
     .value();
 

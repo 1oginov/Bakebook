@@ -1,12 +1,12 @@
 import { TabNavigator } from 'react-navigation';
 
-import AddVehicle from '../../vehicles/components/AddRecipe';
 import CategoryList from '../../vehicles/components/CategoryList';
-import VehicleList from '../../vehicles/components/RecipeList';
+import CreateVehicle from '../../vehicles/components/CreateVehicle';
+import VehicleList from '../../vehicles/components/VehicleList';
 
 const Navigation = TabNavigator({
   VehicleList: { screen: VehicleList },
-  AddVehicle: { screen: AddVehicle },
+  CreateVehicle: { screen: CreateVehicle },
   CategoryList: { screen: CategoryList },
 });
 
