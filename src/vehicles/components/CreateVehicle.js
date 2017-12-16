@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   container: {
-    padding: 32,
+    padding: 24,
   },
 });
 
@@ -57,7 +57,7 @@ class CreateVehicle extends Component {
           placeholder="Notes"
         />
         <View style={styles.buttonContainer}>
-          <Button onPress={this.onButtonPress} title="Create vehicle" />
+          <Button onPress={this.onButtonPress} title="Store vehicle" />
         </View>
       </ScrollView>
     );
