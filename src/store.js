@@ -1,7 +1,11 @@
-import { applyMiddleware, createStore } from 'redux';
-import Thunk from 'redux-thunk';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import Thunk from 'redux-thunk';
 
-import reducers from './reducers';
+import vehicles from './vehicles/reducers';
 
-export default createStore(reducers, composeWithDevTools(), applyMiddleware(Thunk));
+const reducers = combineReducers({
+  vehicles,
+});
+
+export default createStore(reducers, composeWithDevTools(applyMiddleware(Thunk)));
