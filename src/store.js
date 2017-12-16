@@ -8,4 +8,4 @@ const reducers = combineReducers({
   vehicles,
 });
 
-export default createStore(reducers, composeWithDevTools(), applyMiddleware(Thunk));
+export default createStore(reducers, composeWithDevTools(applyMiddleware(Thunk)));
