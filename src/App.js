@@ -6,7 +6,9 @@ import { Provider } from 'react-redux';
 import Loader from './common/components/Loader';
 import Login from './user/components/Login';
 import Navigation from './common/components/Navigation';
-import store from './store';
+import { configureStore } from './lib/store';
+
+const store = configureStore();
 
 const styles = StyleSheet.create({
   container: {

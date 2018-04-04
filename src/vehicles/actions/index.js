@@ -4,7 +4,7 @@ import * as T from './types';
 
 /**
  * Deselect action creator.
- * @returns {{type: string}}
+ * @return {{type: string}}
  */
 export const deselect = () => ({
   type: T.DESELECT,
@@ -13,7 +13,7 @@ export const deselect = () => ({
 /**
  * Destroy (Delete) action creator.
  * @param {string} uid
- * @returns {function}
+ * @return {Function}
  */
 export const destroy = (uid) => {
   const { currentUser } = firebase.auth();
@@ -30,7 +30,7 @@ export const destroy = (uid) => {
 /**
  * Edit action creator.
  * @param {string} uid
- * @returns {{type: string, payload: string}}
+ * @return {{type: string, payload: string}}
  */
 export const edit = uid => ({
   type: T.EDIT,
@@ -39,7 +39,7 @@ export const edit = uid => ({
 
 /**
  * Fetch action creator.
- * @returns {function}
+ * @return {Function}
  */
 export const fetch = () => {
   const { currentUser } = firebase.auth();
@@ -67,7 +67,7 @@ export const fetch = () => {
 /**
  * Select action creator.
  * @param {string} uid
- * @returns {{type: string, payload: string}}
+ * @return {{type: string, payload: string}}
  */
 export const select = uid => ({
   type: T.SELECT,
@@ -77,7 +77,7 @@ export const select = uid => ({
 /**
  * Store action creator.
  * @param {{category: string, notes: string, title: string}}
- * @returns {function}
+ * @return {Function}
  */
 export const store = ({ category, notes, title }) => {
   const { currentUser } = firebase.auth();
@@ -95,7 +95,7 @@ export const store = ({ category, notes, title }) => {
  * Update action creator.
  * @param {string} uid
  * @param {{category: string, notes: string, title: string}}
- * @returns {function}
+ * @return {Function}
  */
 export const update = (uid, { category, notes, title }) => {
   const { currentUser } = firebase.auth();
@@ -113,7 +113,7 @@ export const update = (uid, { category, notes, title }) => {
  * Update Create Form action creator.
  * @param {string} prop
  * @param {string} value
- * @returns {{type: string, payload: {prop: string, value: string}}}
+ * @return {{type: string, payload: {prop: string, value: string}}}
  */
 export const updateCreateForm = (prop, value) => ({
   type: T.CREATE_FORM_UPDATE,
@@ -127,7 +127,7 @@ export const updateCreateForm = (prop, value) => ({
  * Update Edit Form action creator.
  * @param {string} prop
  * @param {string} value
- * @returns {{type: string, payload: {prop: string, value: string}}}
+ * @return {{type: string, payload: {prop: string, value: string}}}
  */
 export const updateEditForm = (prop, value) => ({
   type: T.EDIT_FORM_UPDATE,
