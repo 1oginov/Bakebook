@@ -4,8 +4,8 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import config from '../config';
-import reducer from '../reducer';
+import config from '../../config';
+import reducer from '../../reducer';
 
 /**
  * Configure store.
@@ -39,5 +39,4 @@ const configureStore = (initialState = {}) => {
   return store;
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { configureStore };
+export { configureStore }; // eslint-disable-line import/prefer-default-export

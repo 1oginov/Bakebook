@@ -4,10 +4,10 @@ import CategoryList from '../../vehicles/components/CategoryList';
 import CreateVehicle from '../../vehicles/components/CreateVehicle';
 import VehicleList from '../../vehicles/components/VehicleList';
 
-const Navigation = TabNavigator({
+const Navigator = TabNavigator({
   VehicleList: { screen: VehicleList },
   CreateVehicle: { screen: CreateVehicle },
   CategoryList: { screen: CategoryList },
 });
 
-export default Navigation;
+export default Navigator;

@@ -3,16 +3,16 @@ import * as T from '../actions/types';
 /**
  * Initial state.
  * @type {{
- *   isLoggedIn: boolean,
- *   justSignedUp: boolean,
+ *   isLoggedIn: boolean|null,
+ *   justSignedUp: boolean|null,
  *   loginError: Object|null,
  *   logoutError: Object|null,
  *   signUpError: Object|null
  * }}
  */
 const initialState = {
-  isLoggedIn: false,
-  justSignedUp: false,
+  isLoggedIn: null,
+  justSignedUp: null,
   loginError: null,
   logoutError: null,
   signUpError: null,
@@ -36,6 +36,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
+        justSignedUp: false,
         loginError: null,
       };
 
@@ -43,6 +44,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false,
+        justSignedUp: false,
         logoutError: null,
       };
 
@@ -63,14 +65,12 @@ export default (state = initialState, action) => {
         ...state,
         isLoggedIn: true,
         justSignedUp: true,
-        loginError: null,
         signUpError: null,
       };
 
     case T.SIGN_UP_ERROR:
       return {
         ...state,
-        loginError: null,
         signUpError: action.payload,
       };
 
