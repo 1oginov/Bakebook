@@ -1,4 +1,10 @@
 /**
+ * Auth state changed action type.
+ * @type {string}
+ */
+export const AUTH_STATE_CHANGED = 'user/AUTH_STATE_CHANGED';
+
+/**
  * Logged in action type.
  * @type {string}
  */

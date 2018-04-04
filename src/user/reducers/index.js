@@ -22,10 +22,16 @@ const initialState = {
  * User reducer.
  * @param {Object} state
  * @param {Object} action
- * @returns {Object}
+ * @return {Object}
  */
 export default (state = initialState, action) => {
   switch (action.type) {
+    case T.AUTH_STATE_CHANGED:
+      return {
+        ...state,
+        isLoggedIn: action.payload,
+      };
+
     case T.LOGGED_IN:
       return {
         ...state,
