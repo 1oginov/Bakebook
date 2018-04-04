@@ -17,29 +17,31 @@
     "lint": "eslint ./index.js ./src/"
   },
   "dependencies": {
-    "firebase": "^4.6.2",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.6.0",
-    "react": "16.0.0",
-    "react-native": "0.51.0",
-    "react-native-vector-icons": "^4.4.2",
-    "react-navigation": "^1.0.0-beta.20",
-    "react-redux": "^5.0.6",
+    "firebase": "^4.12.1",
+    "lodash": "^4.17.5",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-native": "^0.55.0",
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^1.5.9",
+    "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
+    "redux-immutable-state-invariant": "^2.1.0",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.2",
-    "babel-jest": "21.2.0",
-    "babel-preset-react-native": "4.0.0",
-    "eslint": "^4.11.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
+    "babel-preset-react-native": "^4.0.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.5.1",
-    "jest": "21.2.1",
-    "react-test-renderer": "16.0.0"
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.3",
+    "react-test-renderer": "^16.3.1"
   },
   "jest": {
     "preset": "react-native"
