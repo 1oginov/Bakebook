@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import dashboard from './dashboard/reducer';
 import user from './user/reducers';
 import vehicles from './vehicles/reducers';
 
@@ -8,6 +9,7 @@ import vehicles from './vehicles/reducers';
  * @type {Function}
  */
 const reducer = combineReducers({
+  dashboard,
   user,
   vehicles,
 });
