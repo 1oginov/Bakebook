@@ -10,7 +10,7 @@ import { watchAuthState } from '../../user/actions';
 import Guest from '../../guest/components/Guest';
 import Splash from '../../guest/components/Splash';
 
-class Root extends Component {
+class Initialization extends Component {
   componentDidMount() {
     firebase.initializeApp(config.firebase);
 
@@ -31,7 +31,7 @@ class Root extends Component {
   }
 }
 
-Root.propTypes = {
+Initialization.propTypes = {
   // State
   isLoggedIn: PropTypes.bool,
   // Dispatch
@@ -40,7 +40,7 @@ Root.propTypes = {
   }).isRequired,
 };
 
-Root.defaultProps = {
+Initialization.defaultProps = {
   isLoggedIn: null,
 };
 
@@ -50,4 +50,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ watchAuthState }, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Root);
+export default connect(mapStateToProps, mapDispatchToProps)(Initialization);
