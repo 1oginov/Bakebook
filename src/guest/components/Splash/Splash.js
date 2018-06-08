@@ -2,17 +2,17 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Loader from '../../../shared/components/Loader';
-import config from '../../../config';
+import theme from '../../../theme';
 
 let styles = {
   container: {
     alignItems: 'center',
-    backgroundColor: config.colors.background,
+    backgroundColor: theme.colors.background,
     flex: 1,
     justifyContent: 'center',
   },
   headline: {
-    color: config.colors.primaryText,
+    color: theme.colors.primaryText,
     fontSize: 32,
     marginBottom: 16,
     textAlign: 'center',
