@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 
-import config from '../../config';
+import config from '../../../config';
 
 const Loader = ({ color, size }) => (
   <ActivityIndicator color={color} size={size} />

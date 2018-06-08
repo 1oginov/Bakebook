@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
-import Loader from '../../common/components/Loader';
+import Loader from '../../shared/components/Loader';
 
 const styles = StyleSheet.create({
   buttonContainer: {

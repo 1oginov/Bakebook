@@ -1,18 +1,22 @@
-import { applyMiddleware, createStore } from 'redux';
+import firebase from 'firebase';
+import { reactReduxFirebase } from 'react-redux-firebase';
+import { applyMiddleware, createStore as createReduxStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import config from '../../config';
-import reducer from '../../reducer';
+import config from '../config';
 
 /**
- * Configure store.
+ * Create store.
+ * @param {Function} reducer
  * @param {Object} [initialState={}]
- * @return {Store}
+ * @return {*}
  */
-const configureStore = (initialState = {}) => {
+const createStore = (reducer, initialState = {}) => {
+  firebase.initializeApp(config.firebase);
+
   const logger = createLogger({
     collapsed: true,
     duration: true,
@@ -20,15 +24,18 @@ const configureStore = (initialState = {}) => {
   });
 
   const middleware = (process.env.NODE_ENV === 'production' ?
-    // Production middleware
+    // Production middleware.
     [thunk, logger] :
-    // Development middleware
+    // Development middleware.
     [thunk, logger, reduxImmutableStateInvariant()]);
 
-  const store = createStore(
+  const store = createReduxStore(
     reducer,
     initialState,
-    composeWithDevTools(applyMiddleware(...middleware)),
+    composeWithDevTools(
+      reactReduxFirebase(firebase),
+      applyMiddleware(...middleware),
+    ),
   );
 
   // Append store to the window object to make it globally accessible.
@@ -39,4 +46,4 @@ const configureStore = (initialState = {}) => {
   return store;
 };
 
-export { configureStore }; // eslint-disable-line import/prefer-default-export
+export default createStore;

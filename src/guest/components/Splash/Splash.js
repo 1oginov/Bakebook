@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Loader from '../components/Loader';
-import config from '../../config';
+import Loader from '../../../shared/components/Loader';
+import config from '../../../config';
 
 let styles = {
   container: {

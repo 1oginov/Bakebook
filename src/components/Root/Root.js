@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import config from '../../config';
-import Navigator from './Navigator';
+import Navigator from '../Navigator';
 import { watchAuthState } from '../../user/actions';
-import Guest from '../views/Guest';
-import Splash from '../views/Splash';
+import Guest from '../../guest/components/Guest';
+import Splash from '../../guest/components/Splash';
 
 class Root extends Component {
   componentDidMount() {

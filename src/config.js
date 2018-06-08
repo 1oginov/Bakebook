@@ -1,5 +1,5 @@
 /**
- * Configuration object.
+ * Configuration.
  * @type {Object}
  */
 const config = {
