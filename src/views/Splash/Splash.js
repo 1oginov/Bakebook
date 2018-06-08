@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import theme from '../../../theme';
-import Login from '../../../user/components/Login';
+import Loader from '../../shared/components/Loader';
+import theme from '../../theme';
 
 let styles = {
   container: {
@@ -21,11 +21,11 @@ let styles = {
 
 styles = StyleSheet.create(styles);
 
-const Guest = () => (
+const Splash = () => (
   <View style={styles.container}>
     <Text style={styles.headline}>Carbook</Text>
-    <Login />
+    <Loader />
   </View>
 );
 
-export default Guest;
+export default Splash;

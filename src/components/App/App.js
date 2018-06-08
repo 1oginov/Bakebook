@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Provider } from 'react-redux';
 
@@ -8,5 +9,9 @@ const App = ({ store }) => (
     <Initialization />
   </Provider>
 );
+
+App.propTypes = {
+  store: PropTypes.shape({}).isRequired,
+};
 
 export default App;
