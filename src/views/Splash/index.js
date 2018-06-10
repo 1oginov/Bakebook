@@ -1,3 +1,4 @@
 import Splash from './Splash';
+import style from './Splash.styles';
 
-export default Splash;
+export default style(Splash);
