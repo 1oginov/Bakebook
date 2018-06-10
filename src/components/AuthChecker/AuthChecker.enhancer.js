@@ -3,18 +3,18 @@ import { compose, withProps } from 'recompose';
 
 import Navigator from '../Navigator';
 import withAuth from '../../user/enhancers/withAuth';
-import Guest from '../../user/views/Guest';
+import Guest from '../../views/Guest';
 import Splash from '../../views/Splash';
 
 export default compose(
   withAuth,
-  withProps(({ isAuthLoaded, isAuthEmpty }) => {
+  withProps(({ isAuthenticated, isAuthLoaded, isAuthEmpty }) => {
     let children = <Splash />;
 
-    if (isAuthLoaded && isAuthEmpty) {
-      children = <Guest />;
-    } else if (isAuthLoaded && !isAuthEmpty) {
+    if (isAuthenticated) {
       children = <Navigator />;
+    } else if (isAuthLoaded && isAuthEmpty) {
+      children = <Guest />;
     }
 
     return { children };

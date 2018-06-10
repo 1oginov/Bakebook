@@ -5,6 +5,4 @@ import reducer from '../../reducer';
 
 const store = createStore(reducer);
 
-export default withProps(() => ({
-  store,
-}));
+export default withProps(() => ({ store }));

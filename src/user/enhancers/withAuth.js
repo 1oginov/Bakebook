@@ -24,7 +24,7 @@ const withAuth = compose(
  * @type {Object}
  */
 const propTypes = {
-  auth: PropTypes.shape({}).isRequired,
+  auth: PropTypes.shape().isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   isAuthLoaded: PropTypes.bool.isRequired,
   isAuthEmpty: PropTypes.bool.isRequired,

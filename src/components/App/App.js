@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import Initialization from '../Initialization';
+import AuthChecker from '../AuthChecker';
 
 const App = ({ store }) => (
   <Provider store={store}>
-    <Initialization />
+    <AuthChecker />
   </Provider>
 );
 
 App.propTypes = {
-  store: PropTypes.shape({}).isRequired,
+  store: PropTypes.shape().isRequired,
 };
 
 export default App;
