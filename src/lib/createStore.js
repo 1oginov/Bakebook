@@ -1,8 +1,7 @@
 import firebase from 'firebase';
 import { reactReduxFirebase } from 'react-redux-firebase';
-import { applyMiddleware, compose, createStore as createReduxStore } from 'redux';
-// TODO: Use `composeWithDevTools` when it become compatible with Redux v4.
-// import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import { applyMiddleware, createStore as createReduxStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
@@ -33,7 +32,7 @@ const createStore = (reducer, initialState = {}) => {
   const store = createReduxStore(
     reducer,
     initialState,
-    compose(
+    composeWithDevTools(
       reactReduxFirebase(firebase),
       applyMiddleware(...middleware),
     ),
