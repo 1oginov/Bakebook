@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 
+import theme from '../../../theme';
+
 const Loader = ({ color, size }) => (
   <ActivityIndicator color={color} size={size} />
 );
@@ -12,7 +14,7 @@ Loader.propTypes = {
 };
 
 Loader.defaultProps = {
-  color: 'gray',
+  color: theme.colors.hintText,
   size: 'large',
 };
 

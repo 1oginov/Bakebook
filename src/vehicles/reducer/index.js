@@ -38,7 +38,7 @@ const initialState = {
  * Vehicles reducer.
  * @param {Object} state
  * @param {Object} action
- * @returns {Object}
+ * @return {Object}
  */
 export default (state = initialState, action) => {
   switch (action.type) {
