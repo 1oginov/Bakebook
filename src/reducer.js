@@ -1,15 +1,20 @@
+import { firebaseReducer as firebase } from 'react-redux-firebase';
 import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
 
-import user from './user/reducers';
-import vehicles from './vehicles/reducers';
+import { STORE_NAME as VEHICLES_STORE_NAME } from './vehicles/constants';
+import vehiclesReducer from './vehicles/reducer';
 
 /**
- * Combined reducer.
+ * Reducer.
  * @type {Function}
  */
 const reducer = combineReducers({
-  user,
-  vehicles,
+  // Vendor reducers.
+  firebase,
+  form,
+  // App reducers.
+  [VEHICLES_STORE_NAME]: vehiclesReducer,
 });
 
 export default reducer;
