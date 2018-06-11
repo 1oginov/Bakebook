@@ -110,20 +110,6 @@ export const update = (uid, { category, notes, title }) => {
 };
 
 /**
- * Update Create Form action creator.
- * @param {string} prop
- * @param {string} value
- * @return {{type: string, payload: {prop: string, value: string}}}
- */
-export const updateCreateForm = (prop, value) => ({
-  type: T.CREATE_FORM_UPDATE,
-  payload: {
-    prop,
-    value,
-  },
-});
-
-/**
  * Update Edit Form action creator.
  * @param {string} prop
  * @param {string} value
