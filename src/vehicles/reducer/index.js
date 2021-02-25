@@ -3,11 +3,6 @@ import * as T from '../actions/types';
 /**
  * Initial state.
  * @type {{
- *     createForm: {
- *         category: string,
- *         notes: string,
- *         title: string
- *     },
  *     editForm: {
  *         category: string,
  *         notes: string,
@@ -19,11 +14,6 @@ import * as T from '../actions/types';
  * }}
  */
 const initialState = {
-  createForm: {
-    category: '',
-    notes: '',
-    title: '',
-  },
   editForm: {
     category: '',
     notes: '',
@@ -42,15 +32,6 @@ const initialState = {
  */
 export default (state = initialState, action) => {
   switch (action.type) {
-    case T.CREATE_FORM_UPDATE:
-      return {
-        ...state,
-        createForm: {
-          ...state.createForm,
-          [action.payload.prop]: action.payload.value,
-        },
-      };
-
     case T.DELETE:
       return {
         ...state,

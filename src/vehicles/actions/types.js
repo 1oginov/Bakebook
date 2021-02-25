@@ -1,10 +1,4 @@
 /**
- * Create Form Update action type.
- * @type {string}
- */
-export const CREATE_FORM_UPDATE = 'vehicles/CREATE_FORM_UPDATE';
-
-/**
  * Delete action type.
  * @type {string}
  */
