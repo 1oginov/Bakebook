@@ -2,6 +2,11 @@
   "name": "@loginov-rocks/carbook",
   "version": "0.3.0",
   "description": "Carbook",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "lint": "eslint ./index.js ./src/"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/loginov-rocks/Carbook.git"
@@ -11,11 +16,6 @@
   "private": true,
   "bugs": {
     "url": "https://github.com/loginov-rocks/Carbook/issues"
-  },
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "lint": "eslint ./index.js ./src/"
   },
   "dependencies": {
     "firebase": "^5.0.4",
