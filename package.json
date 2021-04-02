@@ -1,15 +1,16 @@
 {
-  "name": "carbook",
+  "name": "@loginov-rocks/carbook",
   "version": "0.3.0",
   "description": "Carbook",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1oginov/Carbook.git"
+    "url": "git+https://github.com/loginov-rocks/Carbook.git"
   },
   "author": "Danila Loginov <danila@loginov.rocks> (https://loginov.rocks)",
   "license": "MIT",
+  "private": true,
   "bugs": {
-    "url": "https://github.com/1oginov/Carbook/issues"
+    "url": "https://github.com/loginov-rocks/Carbook/issues"
   },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
