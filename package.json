@@ -17,6 +17,7 @@
   "bugs": {
     "url": "https://github.com/loginov-rocks/Carbook/issues"
   },
+  "homepage": "https://github.com/loginov-rocks/Carbook",
   "dependencies": {
     "firebase": "^5.0.4",
     "lodash": "^4.17.10",
